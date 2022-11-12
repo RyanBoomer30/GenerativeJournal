@@ -9,13 +9,6 @@ class PostAdmin(admin.ModelAdmin):
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ("__str__")
 
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ("__str__")
-
-class LikeAdmin(admin.ModelAdmin):
-    list_display = ("__str__")
 
 admin.site.register(Post)
 admin.site.register(Profile)
-admin.site.register(Comment)
-admin.site.register(Like)

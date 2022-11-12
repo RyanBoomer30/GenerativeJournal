@@ -29,31 +29,24 @@
             <a href="{% url 'profile' post.owner.id %}"><h2 class="profile_{{post.owner.id}}" data-profile="{{post.owner.id}}" style="font-weight: bold;" >{{ post.owner }}</h2></a>
             
             <h5 id="content_{{post.id}}">{{ post.content }}</h5>
-            
-            {% if request.user in post.liked.all %}
-                <button class="btn" id="btn_{{post.id}}" data-page="{{post.id}}" data-count="{{ post.liked.all.count }}" style="color:red"><i class="fas fa-heart"></i></Button>
-            {% else %}
-                <button class="btn" id="btn_{{post.id}}" data-page="{{post.id}}" data-count="{{ post.liked.all.count }}" style="color:grey"><i class="fas fa-heart"></i></Button>
-            {% endif %}
-            <h6 class="like" id="like_{{post.id}}" style="float: left;" data-page="{{post.id}}">{{ post.liked.all.count }}</h6>
             <h6>&nbsp; {{ post.time }}</h6>
             
         </div>
     {% endfor %}
 
-<h5 class="container" style="border-style: hidden;">
-    {% if posts.has_previous %}
-    <a href="?page={{ posts.previous_page_number }}">previous</a>
-    {% endif %}
+    <h5 class="container" style="border-style: hidden;">
+        {% if posts.has_previous %}
+        <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
 
 
-    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+        Page {{ posts.number }} of {{ posts.paginator.num_pages }}
 
 
-    {% if posts.has_next %}
-        <a href="?page={{ posts.next_page_number }}">next</a>
-    {% endif %}
-</h5>
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+        {% endif %}
+    </h5>
 
 
 

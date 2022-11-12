@@ -4,36 +4,11 @@
 {% block body %}
     <div class="form">
         <h1>{{ userName }} (#{{ id }})</h1>
-        
-        <div class="row">
-            <div class="column">
-                <h3 id="count_{{profile.user.id}}">Follower: {{ followers }}</h3>
-            </div>
-            <div class="column">
-                <h3>Following: {{ following }}</h3>
-            </div>
-            
-        </div>
-        {% if request.user != profile.user %}
-            {% if request.user in profile.followers.all %}
-                <button class="follow" id="follow_{{profile.user.id}}" data-profile="{{profile.user.id}}" >Unfollow</Button>
-            {% else %}
-                <button class="follow" id="follow_{{profile.user.id}}" data-profile="{{profile.user.id}}" >Follow</Button>
-            {% endif %}
-        {% endif %}
     </div>
     {% for post in posts %}
         <div class="container">
             <a href="{% url 'profile' post.owner.id %}"><h2 class="profile_{{post.owner.id}}" data-profile="{{post.owner.id}}" style="font-weight: bold;" >{{ post.owner }}</h2></a>
-                
-            
             <h5>{{ post.content }}</h5>
-            {% if request.user in post.liked.all %}
-                <button class="btn" id="btn_{{post.id}}" data-page="{{post.id}}" data-count="{{ post.liked.all.count }}" style="color:red"><i class="fas fa-heart"></i></Button>
-            {% else %}
-                <button class="btn" id="btn_{{post.id}}" data-page="{{post.id}}" data-count="{{ post.liked.all.count }}" style="color:grey"><i class="fas fa-heart"></i></Button>
-            {% endif %}
-            <h6 class="like" id="like_{{post.id}}" style="float: left;" data-page="{{post.id}}">{{ post.liked.all.count }}</h6>
             <h6>&nbsp; {{ post.time }}</h6>
         </div>
     {% endfor %}
