@@ -1,0 +1,65 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="form">
+        <form action="{% url 'create' %}" method = "POST">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" value="Post" style="width: 100%;">
+        </form>
+    </div>
+
+    {% for post in posts %}
+        <div class="container">
+            {% if request.user == post.owner %}
+                <h4 class="editButton" onclick = "openForm('{{post.id}}')">Edit Post</h4>
+                <div class="form-popup" id="myForm_{{post.id}}">
+                    <form onsubmit="Edit('{{post.id}}', document.getElementById('edit_{{post.id}}').value); return false;" class="form-container">
+                        <h1>Edit</h1>
+                    
+                        <input type="text" name="edit" id="edit_{{post.id}}" placeholder="Enter Edit Version" required>
+                    
+                        <button type="submit" onclick="closeForm('{{post.id}}')">Submit</button>
+                        <button type="button" onclick="closeForm('{{post.id}}')">Close</button>
+                    </form>
+                </div>
+            {% endif %}
+            <a href="{% url 'profile' post.owner.id %}"><h2 class="profile_{{post.owner.id}}" data-profile="{{post.owner.id}}" style="font-weight: bold;" >{{ post.owner }}</h2></a>
+            
+            <h5 id="content_{{post.id}}">{{ post.content }}</h5>
+            
+            {% if request.user in post.liked.all %}
+                <button class="btn" id="btn_{{post.id}}" data-page="{{post.id}}" data-count="{{ post.liked.all.count }}" style="color:red"><i class="fas fa-heart"></i></Button>
+            {% else %}
+                <button class="btn" id="btn_{{post.id}}" data-page="{{post.id}}" data-count="{{ post.liked.all.count }}" style="color:grey"><i class="fas fa-heart"></i></Button>
+            {% endif %}
+            <h6 class="like" id="like_{{post.id}}" style="float: left;" data-page="{{post.id}}">{{ post.liked.all.count }}</h6>
+            <h6>&nbsp; {{ post.time }}</h6>
+            
+        </div>
+    {% endfor %}
+
+<h5 class="container" style="border-style: hidden;">
+    {% if posts.has_previous %}
+    <a href="?page={{ posts.previous_page_number }}">previous</a>
+    {% endif %}
+
+
+    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+
+
+    {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}">next</a>
+    {% endif %}
+</h5>
+
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
+    <script src="https://kit.fontawesome.com/f6dcf461c1.js" crossorigin="anonymous"></script>
+{% endblock %}
