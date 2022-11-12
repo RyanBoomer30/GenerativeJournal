@@ -13,7 +13,6 @@ class Profile(models.Model):
         return f"{self.user} has {self.followers} followers and {self.following} followings"
         
 class Post(models.Model):
-    title = models.CharField(max_length=200)
     content = models.CharField(max_length=1000)
     time = models.DateTimeField(default=timezone.now)
     owner = models.ForeignKey('User', on_delete=models.CASCADE, related_name="post_profile")

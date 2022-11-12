@@ -1,37 +1,41 @@
 {% extends "network/layout.html" %}
 {% load static %}
 
+{%block script%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+{% endblock %}
+
 {% block body %}
-    <div class="form">
-        <form action="{% url 'create' %}" method = "POST">
-            {% csrf_token %}
-            {{ form }}
-            <br>
-            <input type="submit" value="Post" style="width: 100%;">
-        </form>
+    <div class="container mt-3">
+        <h1 class="text-center">Hello, Name</h1>
     </div>
 
+    <div class="container col-sm-4 mt-5">
+    <h2>Today</h2>
+    <h4>It looks like you haven't uploaded anything today.</h4>
+    <form action="{% url 'create' %}" method = "POST">
+    <div class="form-group">
+            {% csrf_token %}
+            {% comment %} <label for="exampleFormControlTextarea1">Label</label> {% endcomment %}
+            <textarea class="form-control mt-3" name="postContent" rows="3"></textarea>
+    </div>
+    <button type="submit" value="Post" class="btn btn-primary rounded mt-3">Add to your journal</button>
+    </form>
+    </div>
     {% for post in posts %}
-        <div class="container">
-            {% if request.user == post.owner %}
-                <h4 class="editButton" onclick = "openForm('{{post.id}}')">Edit Post</h4>
-                <div class="form-popup" id="myForm_{{post.id}}">
-                    <form onsubmit="Edit('{{post.id}}', document.getElementById('edit_{{post.id}}').value); return false;" class="form-container">
-                        <h1>Edit</h1>
-                    
-                        <input type="text" name="edit" id="edit_{{post.id}}" placeholder="Enter Edit Version" required>
-                    
-                        <button type="submit" onclick="closeForm('{{post.id}}')">Submit</button>
-                        <button type="button" onclick="closeForm('{{post.id}}')">Close</button>
-                    </form>
-                </div>
-            {% endif %}
-            <a href="{% url 'profile' post.owner.id %}"><h2 class="profile_{{post.owner.id}}" data-profile="{{post.owner.id}}" style="font-weight: bold;" >{{ post.owner }}</h2></a>
-            
-            <h5 id="content_{{post.id}}">{{ post.content }}</h5>
-            <h6>&nbsp; {{ post.time }}</h6>
-            
+    <div class="container col-sm-4 mt-3">
+        <h2>{{ post.time|date:"D d M Y"}}</h2>
+        <div class="card">
+            <img class="card-img-top" src="https://previews.123rf.com/images/savo/savo1908/savo190800177/128509235-abstract-color-pattern-modern-random-colors-ideal-for-textiles-packaging-paper-printing-simple-backg.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5>It looks like you had a great day!</h5>
+            <p class="card-text" id="content_{{post.id}}">{{ post.content }}</p>
+            <button type="button" class="btn btn-dark">Share</button>
+            </div>
         </div>
+    </div>
     {% endfor %}
 
     <h5 class="container" style="border-style: hidden;">
@@ -48,11 +52,4 @@
         {% endif %}
     </h5>
 
-
-
-{% endblock %}
-
-{% block script %}
-    <script src="{% static 'network/index.js' %}"></script>
-    <script src="https://kit.fontawesome.com/f6dcf461c1.js" crossorigin="anonymous"></script>
 {% endblock %}

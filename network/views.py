@@ -12,11 +12,11 @@ class CreatePost(forms.Form):
     content = forms.CharField(
         label="", 
         max_length=120, 
-        widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'What is happening?'}))
+        widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'It looks like you have not posted anything'}))
 
 def index(request):
     user = request.user
-    all_posts = Post.objects.all()
+    all_posts = Post.objects.filter(owner=user).order_by('-time')
 
     # Render posts in order of 10 per paginator
     paginator = Paginator(all_posts, 10)
@@ -83,10 +83,12 @@ def register(request):
 # Create a new post
 def createPost(request):
     if request.method == "POST":
-        description = request.POST['content']
+        description = request.POST.get('postContent', False)
+        sentiment = 100
         post = Post(
             content = description,
             owner = User.objects.get(username=request.user),
+            sentiment = sentiment
         )
         post.save()
         return HttpResponseRedirect(reverse("index"))
@@ -114,5 +116,3 @@ def edit(request, post_id, edit):
     return JsonResponse({
         'edit': edit
     })
-
-    
