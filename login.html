@@ -1,28 +1,29 @@
-<!DOCTYPE html>
-<html>
+{% extends "network/layout.html" %}
+
+{% block body %}
     <head>
         <title>
             Boston Hacks 2022
         </title>
         <link rel="stylesheet" type="text/css" href="../../static/website/styles.css">
     </head>
-    
+
     <body>
         <div class="login-form">
             <h1> Welcome! </h1>
-            <form action="#" method="post">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
                 <p>Username </p>
-                <input type="text" name="user" placeholder="Enter your account">
+                <input autofocus class="form-control" type="text" name="username" placeholder="Enter your username">
                 <p> Password </p>
-                <input type="password" name="password" placeholder="Enter your password">
+                <input class="form-control" type="password" name="password" placeholder="Enter your Password">
                 <button type="submit">
                     <nav>
-                        <a href="">
-                            Log In
-                        </a>
+                        <input type="submit" value="Login">
                     </nav>
                 </button>
             </form>
+            Don't have an account? <a href="{% url 'register' %}">Register here.</a>
         </div>
-    </body>
-</html>
+    </body>    
+{% endblock %}

@@ -1,24 +1,29 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
+    <head>
+        <title>
+            Boston Hacks 2022
+        </title>
+        <link rel="stylesheet" type="text/css" href="../../static/website/styles.css">
+    </head>
 
-    <h2>Login</h2>
-
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
-
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+    <body>
+        <div class="login-form">
+            <h1> Welcome! </h1>
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <p>Username </p>
+                <input autofocus class="form-control" type="text" name="username" placeholder="Enter your username">
+                <p> Password </p>
+                <input class="form-control" type="password" name="password" placeholder="Enter your Password">
+                <button type="submit">
+                    <nav>
+                        <input type="submit" value="Login">
+                    </nav>
+                </button>
+            </form>
+            Don't have an account? <a href="{% url 'register' %}">Register here.</a>
         </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Login">
-    </form>
-
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
-
+    </body>    
 {% endblock %}
