@@ -17,6 +17,7 @@ class Post(models.Model):
     time = models.DateTimeField(default=timezone.now)
     owner = models.ForeignKey('User', on_delete=models.CASCADE, related_name="post_profile")
     sentiment = models.IntegerField()
+    image = models.ImageField(default='default.png')
 
     def __str__(self):
         return f"{self.owner} posted {self.content}"

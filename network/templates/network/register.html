@@ -2,29 +2,115 @@
 
 {% block body %}
 
-    <h2>Register</h2>
+<section class="vh-100 " style= " background-color: mediumturquoise;">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register to Journal</h3>
+                <form action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+        
+                        <div class="form-outline">
+                            <input type="text" id="firstName" class="form-control form-control-lg" />
+                            <label class="form-label" for="firstName">First Name</label>
+                        </div>
+        
+                        </div>
+                        <div class="col-md-6 mb-4">
+        
+                        <div class="form-outline">
+                            <input type="text" id="lastName" class="form-control form-control-lg" />
+                            <label class="form-label" for="lastName">Last Name</label>
+                        </div>
+        
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-md-6 mb-4 d-flex align-items-center">
+        
+                        <div class="form-outline datepicker w-100">
+                            <input type="email" id="emailAddress" class="form-control form-control-lg" name="email"/>
+                            <label class="form-label" for="emailAddress">Email</label>
+                        </div>
+        
+                        </div>
+                        <div class="col-md-6 mb-4">
+        
+                        <h6 class="mb-2 pb-1">Gender: </h6>
+        
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                            value="option1" checked />
+                            <label class="form-check-label" for="femaleGender">Female</label>
+                        </div>
+        
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                            value="option2" />
+                            <label class="form-check-label" for="maleGender">Male</label>
+                        </div>
+        
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                            value="option3" />
+                            <label class="form-check-label" for="otherGender">Other</label>
+                        </div>
+        
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-md-6 mb-4 pb-2">
+        
+                            <div class="form-outline">
+                                <input type="text" id="emailAddress" class="form-control form-control-lg" name="username"/>
+                                <label class="form-label" for="emailAddress">Username</label>
+                            </div>
+                        </div>
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
-
-    <form action="{% url 'register' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+                        <div class="col-md-6 mb-4 pb-2">
+  
+                            <div class="form-outline">
+                              <input type="tel" id="phoneNumber" class="form-control form-control-lg" name="password"/>
+                              <label class="form-label" >Password</label>
+                            </div>
+          
+                          </div>
+        
+                        
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-12">
+        
+                        <select class="select form-control-lg">
+                            <option value="1" disabled>Choose option</option>
+                            <option value="2">To track my mental health.</option>
+                            <option value="3">To improve how my days go.</option>
+                            <option value="4">For fun.</option>
+                            <option value="5">Other</option>
+                        </select>
+                        <label class="form-label select-label">Why do you join Journal?</label>
+        
+                        </div>
+                    </div>
+        
+                    <div class="mt-4 pt-2">
+                        <input class="btn btn-primary btn-lg" type="submit" value="Register" style="background-color: mediumturquoise; border-color: mediumturquoise;"/>
+                    </div>
+                </form>
+                Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+            </div>
+            </div>
         </div>
-        <div class="form-group">
-            <input class="form-control" type="email" name="email" placeholder="Email Address">
         </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Register">
-    </form>
-
-    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    </div>
+    </section>
+    
 
 {% endblock %}

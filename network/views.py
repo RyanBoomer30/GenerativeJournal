@@ -8,6 +8,35 @@ from django.core.paginator import Paginator
 
 from .models import *
 
+from nrclex import NRCLex
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import pyplot as plt
+
+def drawgraph(result):
+  emotions = {'fear': 'm', 'anger': 'r', 'anticipation': 'm', 'trust': 'g', 'surprise': 'y', 'positive': 'y', 'negative': 'r', 'sadness': 'b', 'disgust': 'g', 'joy': 'y'}
+  x = []
+  y = []
+  colors = []
+
+  for key in result:
+    x += [key]
+    y += [result[key]]
+    colors += emotions[key]
+    
+
+  plt.bar(x,y, color=colors, alpha=0.65)
+
+  plt.xticks([])
+  plt.yticks([])
+
+  return plt
+
+def getemotions(str):
+    text_object = NRCLex(str)
+    data = text_object.raw_emotion_scores
+    return data
+
 class CreatePost(forms.Form):
     content = forms.CharField(
         label="", 
@@ -62,11 +91,6 @@ def register(request):
 
         # Ensure password matches confirmation
         password = request.POST["password"]
-        confirmation = request.POST["confirmation"]
-        if password != confirmation:
-            return render(request, "network/register.html", {
-                "message": "Passwords must match."
-            })
 
         # Attempt to create new user
         try:
@@ -87,11 +111,13 @@ def register(request):
 def createPost(request):
     if request.method == "POST":
         description = request.POST.get('postContent', False)
+        dict = getemotions(description)   
         sentiment = 100
         post = Post(
             content = description,
             owner = User.objects.get(username=request.user),
-            sentiment = sentiment
+            sentiment = sentiment,
+            image = dict.savefig('{}.png'.format(post.id))
         )
         post.save()
         return HttpResponseRedirect(reverse("index"))
