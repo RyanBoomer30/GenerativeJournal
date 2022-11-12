@@ -16,16 +16,19 @@ class CreatePost(forms.Form):
 
 def index(request):
     user = request.user
-    all_posts = Post.objects.filter(owner=user).order_by('-time')
+    if (user.is_authenticated):
+        all_posts = Post.objects.filter(owner=user).order_by('-time')
 
-    # Render posts in order of 10 per paginator
-    paginator = Paginator(all_posts, 10)
-    page_number = request.GET.get('page')
-    posts = paginator.get_page(page_number)
-    return render(request, "network/index.html", {
-        "form": CreatePost(),
-        'posts': posts
-    })
+        # Render posts in order of 10 per paginator
+        paginator = Paginator(all_posts, 10)
+        page_number = request.GET.get('page')
+        posts = paginator.get_page(page_number)
+        return render(request, "network/index.html", {
+            "form": CreatePost(),
+            'posts': posts
+        })
+    else:
+        return render(request, "network/login.html")
 
 def login_view(request):
     if request.method == "POST":
