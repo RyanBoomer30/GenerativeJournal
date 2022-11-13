@@ -17,3 +17,4 @@ Features we would like to add in the future:
 - A rewards system
 - A buddy system
 - Social media sharing
+- Recommendations based on your previous moods
