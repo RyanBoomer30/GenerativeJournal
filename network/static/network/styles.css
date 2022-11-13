@@ -4,10 +4,6 @@
     font-family: sans-serif;
 }
 
-body {
-    background-color: rgb(40, 75, 87);
-}
-
 .login-form {
     width: 350px;
     top: 50%;
@@ -61,9 +57,11 @@ ul {list-style-type: none;}
 /* Month header */
 .month {
   padding: 50px 25px;
-  width: 93.7%;
+  width: 100%;
   background: mediumturquoise;
   text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 /* Month list */
@@ -74,9 +72,9 @@ ul {list-style-type: none;}
 
 .month ul li {
   color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  font-size: 30px;
+  /* text-transform: uppercase;
+  letter-spacing: 3px; */
 }
 
 /* Previous button inside month header */

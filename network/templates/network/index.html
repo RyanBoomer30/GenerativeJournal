@@ -21,7 +21,7 @@
             {% comment %} <label for="exampleFormControlTextarea1">Label</label> {% endcomment %}
             <textarea class="form-control mt-3" name="postContent" rows="3"></textarea>
     </div>
-    <button type="submit" value="Post" class="btn btn-primary rounded mt-3">Add to your journal</button>
+    <button type="submit" value="Post" class="btn btn-dark rounded mt-3">Add to your journal</button>
     </form>
     </div>
     {% for post in posts %}
@@ -31,8 +31,8 @@
             {% comment %} <img class="card-img-top" src="https://previews.123rf.com/images/savo/savo1908/savo190800177/128509235-abstract-color-pattern-modern-random-colors-ideal-for-textiles-packaging-paper-printing-simple-backg.jpg" alt="Card image cap"> {% endcomment %}
             <img src="{{ post.image.url }}">
             <div class="card-body">
-                <h5>It looks like you had a great day!</h5>
-            <p class="card-text" id="content_{{post.id}}">{{ post.content }}</p>
+                <h5><p class="card-text" id="content_{{post.id}}">{{ post.content }}</p></h5>
+            
             <button type="button" class="btn btn-dark">Share</button>
             </div>
         </div>

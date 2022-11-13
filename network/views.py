@@ -24,6 +24,8 @@ from django.conf import settings
 import os
 
 def drawgraph(result):
+    plt.clf()
+
     emotions = {'fear': 'm', 'anger': 'r', 'anticipation': 'm', 'trust': 'g', 'surprise': 'y', 'positive': 'y', 'negative': 'r', 'sadness': 'b', 'disgust': 'g', 'joy': 'y'}
     x = []
     y = []
@@ -156,3 +158,9 @@ def edit(request, post_id, edit):
     return JsonResponse({
         'edit': edit
     })
+
+def calendar(request):
+    return render(request, "network/calendar.html")
+
+def resources(request):
+    return render(request, "network/healthresources.html")

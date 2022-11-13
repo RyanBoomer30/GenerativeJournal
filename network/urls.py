@@ -11,4 +11,6 @@ urlpatterns = [
     path("create", views.createPost, name="create"),
     path("edit/<int:post_id>/<str:edit>", views.edit, name="edit"),
     path("profile/<int:profile_id>", views.profile, name="profile"),
+    path("calendar", views.calendar, name="calendar"),
+    path("resources", views.resources, name="resources"),
 ]
