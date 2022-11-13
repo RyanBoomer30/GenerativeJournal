@@ -7,7 +7,7 @@ Person submits string, typed sentence or key words, and the response will be AI 
 
 
 
-# Django, Python, CSS, HTML, Bootstrap 5
+# Django, Python, CSS, HTML, Bootstrap 5, Jupyter notebook, JavaScript
 
 
 # How we want this web-app to work
