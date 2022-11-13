@@ -1,7 +1,7 @@
 # BUHack2022
 Track: Revamping the Old
 
-- Additional tracks:  Sargent College Hack, Friends for Drew 1, BU Spark
+- Additional challenges:  Sargent College Hack, Friends for Drew 1, BU Spark
 
 A new way to visualize journal entries
 
