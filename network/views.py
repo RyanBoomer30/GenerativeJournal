@@ -95,9 +95,9 @@ def index(request):
         if Post.objects.filter(owner=user).exists():
             all_posts = Post.objects.filter(owner=user).order_by('-time')
             if (all_posts.first().time == timezone.now):
-                status = False
-            else:
                 status = True
+            else:
+                status = False
             
             # Render posts in order of 10 per paginator
             paginator = Paginator(all_posts, 10)
