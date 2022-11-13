@@ -14,15 +14,19 @@
 
     <div class="container col-sm-4 mt-5">
     <h2>Today</h2>
-    <h4>It looks like you haven't uploaded anything today.</h4>
-    <form action="{% url 'create' %}" method = "POST">
-    <div class="form-group">
-            {% csrf_token %}
-            {% comment %} <label for="exampleFormControlTextarea1">Label</label> {% endcomment %}
-            <textarea class="form-control mt-3" name="postContent" rows="3"></textarea>
-    </div>
-    <button type="submit" value="Post" class="btn btn-dark rounded mt-3">Add to your journal</button>
-    </form>
+    {% if status %}
+        <h4>It looks like you haven't uploaded anything today.</h4>
+        <form action="{% url 'create' %}" method = "POST">
+        <div class="form-group">
+                {% csrf_token %}
+                {% comment %} <label for="exampleFormControlTextarea1">Label</label> {% endcomment %}
+                <textarea class="form-control mt-3" name="postContent" rows="3"></textarea>
+        </div>
+        <button type="submit" value="Post" class="btn btn-dark rounded mt-3">Add to your journal</button>
+        </form>
+    {% else %}
+        <h4>It looks like you have already uploaded something today.</h4>
+    {% endif %}
     </div>
     {% for post in posts %}
     <div class="container col-sm-4 mt-3">

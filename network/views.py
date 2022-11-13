@@ -7,7 +7,7 @@ from django import forms
 from django.core.paginator import Paginator
 from django.core.files.images import ImageFile
 from django.core.files.base import ContentFile
-
+from django.utils import timezone
 
 from .models import *
 
@@ -61,14 +61,19 @@ def index(request):
     user = request.user
     if (user.is_authenticated):
         all_posts = Post.objects.filter(owner=user).order_by('-time')
-
+        if (all_posts.first().time == timezone.now):
+            status = True
+        else:
+            status = False
+        
         # Render posts in order of 10 per paginator
         paginator = Paginator(all_posts, 10)
         page_number = request.GET.get('page')
         posts = paginator.get_page(page_number)
         return render(request, "network/index.html", {
             "form": CreatePost(),
-            'posts': posts
+            'posts': posts,
+            'status': status
         })
     else:
         return render(request, "network/login.html")
