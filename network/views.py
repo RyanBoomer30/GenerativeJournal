@@ -5,32 +5,44 @@ from django.shortcuts import render
 from django.urls import reverse
 from django import forms
 from django.core.paginator import Paginator
+from django.core.files.images import ImageFile
+from django.core.files.base import ContentFile
+
 
 from .models import *
 
 from nrclex import NRCLex
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import pyplot as plt
+import io
+import random
+from datetime import datetime
+import string
+from django.conf import settings
+import os
 
 def drawgraph(result):
-  emotions = {'fear': 'm', 'anger': 'r', 'anticipation': 'm', 'trust': 'g', 'surprise': 'y', 'positive': 'y', 'negative': 'r', 'sadness': 'b', 'disgust': 'g', 'joy': 'y'}
-  x = []
-  y = []
-  colors = []
+    emotions = {'fear': 'm', 'anger': 'r', 'anticipation': 'm', 'trust': 'g', 'surprise': 'y', 'positive': 'y', 'negative': 'r', 'sadness': 'b', 'disgust': 'g', 'joy': 'y'}
+    x = []
+    y = []
+    colors = []
 
-  for key in result:
-    x += [key]
-    y += [result[key]]
-    colors += emotions[key]
-    
+    for key in result:
+        x += [key]
+        y += [result[key]]
+        colors += emotions[key]
+        
+    figure = ''.join(random.choices(string.ascii_lowercase, k=32))
+    plt.bar(x,y, color=colors, alpha=0.65)
 
-  plt.bar(x,y, color=colors, alpha=0.65)
+    plt.xticks([])
+    plt.yticks([])
 
-  plt.xticks([])
-  plt.yticks([])
+    plt.savefig("static/images/" + figure + ".png")
 
-  return plt
+    return (figure + ".png")
 
 def getemotions(str):
     text_object = NRCLex(str)
@@ -110,14 +122,13 @@ def register(request):
 # Create a new post
 def createPost(request):
     if request.method == "POST":
-        description = request.POST.get('postContent', False)
-        dict = getemotions(description)   
+        description = request.POST.get('postContent', False) 
         sentiment = 100
         post = Post(
             content = description,
             owner = User.objects.get(username=request.user),
             sentiment = sentiment,
-            image = dict.savefig('{}.png'.format(post.id))
+            image = drawgraph(getemotions(description))
         )
         post.save()
         return HttpResponseRedirect(reverse("index"))

@@ -28,7 +28,8 @@
     <div class="container col-sm-4 mt-3">
         <h2>{{ post.time|date:"D d M Y"}}</h2>
         <div class="card">
-            <img class="card-img-top" src="https://previews.123rf.com/images/savo/savo1908/savo190800177/128509235-abstract-color-pattern-modern-random-colors-ideal-for-textiles-packaging-paper-printing-simple-backg.jpg" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://previews.123rf.com/images/savo/savo1908/savo190800177/128509235-abstract-color-pattern-modern-random-colors-ideal-for-textiles-packaging-paper-printing-simple-backg.jpg" alt="Card image cap"> {% endcomment %}
+            <img src="{{ post.image.url }}">
             <div class="card-body">
                 <h5>It looks like you had a great day!</h5>
             <p class="card-text" id="content_{{post.id}}">{{ post.content }}</p>
