@@ -124,15 +124,15 @@ ul {list-style-type: none;}
 }
 
 .calendarimage{
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
 /* Highlight the "current" day */
 .days li .active {
   padding: 5px;
-  background: #1abc9c;
-  color: white !important
+  background: white;
+  color: black !important
 }
 
 /* Calendar CSS ends here */

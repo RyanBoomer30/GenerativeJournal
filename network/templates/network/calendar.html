@@ -22,19 +22,9 @@
         </ul>
         
         <ul class="days">
-            <li class="calendarimage" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWAAAADrCAYAAABXYUzjAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADh0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uMy4yLjIsIGh0dHA6Ly9tYXRwbG90bGliLm9yZy+WH4yJAAADyklEQVR4nO3bMW6cQBiAUYh8hHUdaq7jjgNul5vstvSunTtMesuWspLxZ6/fKwekf4biE0JiHmNMAHy+X/UGAH4qAQaICDBARIABIgIMEBFggMjDLTefTqexLMtBWwG4T9fr9e8Y4/H1+k0BXpZlulwuH7crgB9gnufnt9Z9ggCICDBARIABIgIMEBFggIgAA0QEGCAiwACRm37EgO9g37fDZ6zr+fAZ3D9vwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QEGCAiwAARAQaICDBARIABIgIMEBFggIgAA0QePmvQvu2Hz1jP69sXtu3w2dP5/NVGp898348/+Lq+c/BQee7tz/Gzz09f75l/Z96AASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAEQEGiAgwQESAASICDBARYICIAANEBBggIsAAkXmM8f83z/PLNE3Px20H4C79HmM8vl68KcAAfByfIAAiAgwQEWCAiAADRAQYICLAABEBBogIMEBEgAEi/wBeaDF7nNETjgAAAABJRU5ErkJggg==);">31</li>
-            <li class="calendarimage" style="background-image: url(media/plot1.png)";>1</li>
-            <li class="calendarimage" style="background-image: url(media/plot2.png)";>2</li>
-            <li class="calendarimage" style="background-image: url(media/plot3.png)";>3</li>
-            <li class="calendarimage" style="background-image: url(media/plot4.png)";>4</li>
-            <li class="calendarimage" style="background-image: url(media/plot5.png)";>5</li>
-            <li class="calendarimage" style="background-image: url(media/plot6.png)";>6</li>
-            <li class="calendarimage" style="background-image: url(media/plot7.png)";>7</li>
-            <li class="calendarimage" style="background-image: url(media/plot8.png)";>8</li>
-            <li class="calendarimage" style="background-image: url(media/plot9.png)";>9</li>
-            <li class="calendarimage" style="background-image: url(media/plot10.png)";>10</li>
-            <li class="calendarimage" style="background-image: url(media/plot11.png)";>11</li>
-            <li class="calendarimage" style="background-image: url(media/plot12.png)";>12</li>
+            {% for post in posts %}
+                <li class="calendarimage" style="background-image: url({{ post.image.url }})";><span class="active">{{post.id}}</span> </li>
+            {% endfor %}
             <li>13</li>
             <li>14</li>
             <li>15</li>
