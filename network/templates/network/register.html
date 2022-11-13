@@ -76,7 +76,7 @@
                         <div class="col-md-6 mb-4 pb-2">
   
                             <div class="form-outline">
-                              <input type="tel" id="phoneNumber" class="form-control form-control-lg" name="password"/>
+                              <input type="password" id="show_hide_password" class="form-control form-control-lg" name="password"/>
                               <label class="form-label">Password</label>
                             </div>
           
@@ -88,9 +88,9 @@
                     <div class="row">
                         <div class="col-12">
         
-                        <select class="select form-control-lg">
+                        <select class="select form-control-md">
                             <option value="1" disabled>Choose option</option>
-                            <option value="2">To track my mental health.</option>
+                            <option value="2" >To track my mental health.</option>
                             <option value="3">To improve how my days go.</option>
                             <option value="4">For fun.</option>
                             <option value="5">Other</option>
@@ -101,10 +101,10 @@
                     </div>
         
                     <div class="mt-4 pt-2">
-                        <input class="btn btn-primary btn-lg" type="submit" value="Register" style="background-color: mediumturquoise; border-color: mediumturquoise;"/>
+                        <input class="btn btn-primary btn-lg mb-3" type="submit" value="Register" style="background-color: mediumturquoise; border-color: mediumturquoise;"/>
                     </div>
                 </form>
-                Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+                Already have an account? <a href="{% url 'login' %}" style="text-decoration: none; color: grey">Log In here.</a>
             </div>
             </div>
         </div>
