@@ -1,5 +1,7 @@
 # BUHack2022
-Track: Revamping the Old  
+Track: Revamping the Old
+additional tracks:  Sargent College Hack, Friends for Drew 1.
+
 A new way to visualize journal entries
 
 This project focuses on individual person's wellbeing. This web-app serves as a daily journal for a registered user. It represents a user's mood via images and color.
