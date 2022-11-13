@@ -1,6 +1,7 @@
 # BUHack2022
 Track: Revamping the Old
-additional tracks:  Sargent College Hack, Friends for Drew 1.
+
+- Additional tracks:  Sargent College Hack, Friends for Drew 1.
 
 A new way to visualize journal entries
 
