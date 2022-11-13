@@ -5,8 +5,6 @@ from django.shortcuts import render
 from django.urls import reverse
 from django import forms
 from django.core.paginator import Paginator
-from django.core.files.images import ImageFile
-from django.core.files.base import ContentFile
 from django.utils import timezone
 
 from .models import *
@@ -19,9 +17,7 @@ import numpy as np
 import random
 from datetime import datetime
 import string
-from django.conf import settings
 from PIL import Image, ImageDraw
-from collections import Counter 
 
 def drawgraph(result):
     emotions = {
