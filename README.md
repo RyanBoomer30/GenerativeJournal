@@ -1,5 +1,5 @@
-# BUHack2022
-Track: Revamping the Old
+# GenerativeJournal
+Winner at BUHackathon on Revamping the old and and Jevaa.AI track
 
 - Additional challenges:  Sargent College Hack, Friends for Drew 1, BU Spark
 
